@@ -18,9 +18,9 @@ spec:
           ports:
             - containerPort: 5672
             - containerPort: 15672
-        volumeMounts:
-          - mountPath: /etc/rabbitmq
-            name: config
+          volumeMounts:
+            - mountPath: /etc/rabbitmq
+              name: config
       restartPolicy: Always
       volumes:
         - name: config
