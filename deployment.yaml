@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-rabbitmq
+  name: ms-rabbitmq
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ms-rabbitmq
+    spec:
+      containers:
+        - image: ms-rabbitmq
+          name: ms-rabbitmq
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+        volumeMounts:
+          - mountPath: /etc/rabbitmq
+            name: config
+      restartPolicy: Always
+      volumes:
+        - name: config
+          gcePersistentDisk:
+            pdName: ms-rabbitmq
+            fsType: ext4
+status: {}
