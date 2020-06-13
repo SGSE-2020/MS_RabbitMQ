@@ -25,6 +25,6 @@ spec:
       volumes:
         - name: config
           gcePersistentDisk:
-            pdName: ms-rabbitmq
+            pdName: ms-rabbitmq-pd
             fsType: ext4
 status: {}
