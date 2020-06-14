@@ -21,6 +21,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/rabbitmq
               name: config
+              subPath: ms-buergerbuero-db
       restartPolicy: Always
       volumes:
         - name: config
