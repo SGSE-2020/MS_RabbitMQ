@@ -12,6 +12,13 @@ spec:
       labels:
         app: ms-rabbitmq
     spec:
+      initContainers:
+        - name: set-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          command: ['sh', '-c', 'mkdir -p /etc/rabbitmq && chown 1000:1000 /etc/rabbitmq' ]
+          volumeMounts:
+            - mountPath: /etc/rabbitmq
+              name: config
       containers:
         - image: ms-rabbitmq
           name: ms-rabbitmq
@@ -21,7 +28,9 @@ spec:
           volumeMounts:
             - mountPath: /etc/rabbitmq
               name: config
-              subPath: ms-buergerbuero-db
+      securityContext:
+        runAsUser: 1000
+        fsGroup: 1000
       restartPolicy: Always
       volumes:
         - name: config
