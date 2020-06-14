@@ -30,9 +30,6 @@ spec:
             - mountPath: /etc/rabbitmq
               name: config
               subPath: configuration
-      securityContext:
-        runAsUser: 999
-        fsGroup: 999
       restartPolicy: Always
       volumes:
         - name: config
