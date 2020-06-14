@@ -12,28 +12,28 @@ spec:
       labels:
         app: ms-rabbitmq
     spec:
-      initContainers:
-        - name: set-permissions
-          image: registry.hub.docker.com/library/busybox:latest
-          command: ['sh', '-c', 'mkdir -p /etc/rabbitmq && chown 999:999 /etc/rabbitmq' ]
-          volumeMounts:
-            - mountPath: /etc/rabbitmq
-              name: config
-              subPath: configuration
+#      initContainers:
+#        - name: set-permissions
+#          image: registry.hub.docker.com/library/busybox:latest
+#          command: ['sh', '-c', 'mkdir -p /etc/rabbitmq && chown 999:999 /etc/rabbitmq' ]
+#          volumeMounts:
+#            - mountPath: /etc/rabbitmq
+#              name: config
+#              subPath: configuration
       containers:
         - image: ms-rabbitmq
           name: ms-rabbitmq
           ports:
             - containerPort: 5672
             - containerPort: 15672
-          volumeMounts:
-            - mountPath: /etc/rabbitmq
-              name: config
-              subPath: configuration
+#          volumeMounts:
+#            - mountPath: /etc/rabbitmq
+#              name: config
+#              subPath: configuration
       restartPolicy: Always
-      volumes:
-        - name: config
-          gcePersistentDisk:
-            pdName: ms-rabbitmq-pd
-            fsType: ext4
+#      volumes:
+#        - name: config
+#          gcePersistentDisk:
+#            pdName: ms-rabbitmq-pd
+#            fsType: ext4
 status: {}
